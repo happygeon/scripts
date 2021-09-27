@@ -21,11 +21,9 @@ jobs:
 
       # download and unzip linux
       - name: download and unzip linux
-        run:
-          hash=$(git rev-parse @:./linux)
-          wget https://github.com/hwgyun/linux/archive/$hash.zip -o linux.zip
-          unzip linux.zip
+      - run: hash=$(git rev-parse @:./linux)
+      - run: wget https://github.com/hwgyun/linux/archive/$hash.zip -o linux.zip
+      - run: unzip linux.zip
 
       - name: build linux
-        run: 
-          ./build-linux.sh linux tinyconfig
+        run: ./build-linux.sh linux tinyconfig
