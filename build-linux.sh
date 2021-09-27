@@ -3,7 +3,7 @@
 # Use of this source code is governed by Apache 2 LICENSE that can be found in the LICENSE file.
 
 
-CONFIGS=(`basename configs/*defconfig`)
+CONFIGS=(`basename configs/*defconfig` tinyconfig)
 
 if [ $# -lt 1 ] || [ $# -gt 2 ]; then
 	echo "Usage: $0 <KERNEL_SRC_DIR> <CONFIG>" >&2
@@ -37,7 +37,11 @@ fi
 
 INSTALL_MOD_PATH=$IMAGE_OUT_DIR/modules
 
-cp configs/${defconfig} $KERNEL_SRC_DIR/arch/x86/configs
+if [ $defconfig = "tinyconfig" ]; then
+	INSTALL_MOD_PATH=""
+else
+	cp configs/${defconfig} $KERNEL_SRC_DIR/arch/x86/configs
+fi
 
 pushd $KERNEL_SRC_DIR
 
@@ -49,7 +53,7 @@ export CXX=g++-8
 make ${defconfig} O=$IMAGE_OUT_DIR/csi2115_f21
 make -j8 O=$IMAGE_OUT_DIR/csi2115_f21 CC=$CC
 
-if [ $INSTALL_MOD_PATH != "" ]; then
+if [ "$INSTALL_MOD_PATH" != "" ]; then
 	pushd $IMAGE_OUT_DIR/csi2115_f21
 	make modules_install INSTALL_MOD_PATH=$INSTALL_MOD_PATH
 	popd
