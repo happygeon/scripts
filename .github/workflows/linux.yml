@@ -21,7 +21,7 @@ jobs:
 
       # download and unzip linux
       - run: hash=$(git rev-parse @:./linux)
-      - run: wget https://github.com/hwgyun/linux/archive/$hash.zip -o linux.zip
+      - run: wget https://github.com/hwgyun/linux/archive/$hash.zip -O linux.zip
       - run: unzip linux.zip
       
       # build linux
