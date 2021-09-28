@@ -20,8 +20,8 @@ jobs:
       - uses: actions/checkout@v2
 
       # download and unzip linux
-      - run: wget https://github.com/hwgyun/linux/archive/$(git rev-parse @:./linux).zip -O linux.zip
-      - run: unzip linux.zip
+      - run: wget -q https://github.com/hwgyun/linux/archive/$(git rev-parse @:./linux).zip -O linux.zip
+      - run: unzip -q linux.zip
       
       # build linux
-      - run: ./build-linux.sh linux tinyconfig
+      - run: ./build-linux.sh linux-$(git rev-parse @:./linux) tinyconfig
