@@ -1,0 +1,28 @@
+# This is a basic workflow to help you get started with Actions
+
+name: linux
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    paths: 
+      - linux
+
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # download and unzip linux
+      - run: sudo apt-get install gcc-8
+      - run: wget -q https://github.com/hwgyun/linux/archive/$(git rev-parse @:./linux).zip -O linux.zip
+      - run: unzip -q linux.zip
+      
+      # build linux
+      - run: ./build-linux.sh linux-$(git rev-parse @:./linux) tinyconfig
