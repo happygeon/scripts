@@ -19,4 +19,6 @@ jobs:
       - run: wget -q https://github.com/happygeon/linux/archive/$(git rev-parse @:./linux).zip -O linux.zip
       - run: unzip -q linux.zip
 
+      - run: ./install-deps.sh
+      
       - run: ./build-linux.sh linux-$(git rev-parse @:./linux) tinyconfig
