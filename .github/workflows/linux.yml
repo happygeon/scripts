@@ -6,23 +6,34 @@ name: linux
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    paths: 
-      - linux
+    paths:
+      - 'linux/**'
 
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
+  # This workflow contains a single job called "build-linux"
+  build-linux:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-20.04
+    
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
-      # download and unzip linux
-      - run: sudo apt-get install gcc-8
-      - run: wget -q https://github.com/happygeon/linux/archive/$(git rev-parse @:./linux).zip -O linux.zip
-      - run: unzip -q linux.zip
+        with:
+          submodules: true
       
-      # build linux
-      - run: ./build-linux.sh linux-$(git rev-parse @:./linux) tinyconfig
+      - name: Download and unzip current snapshot of Linux
+        run: |
+          LINUX_SHA=$(git rev-parse HEAD:linux)
+          curl -L $GITHUB_SERVER_URL/happygeon/linux/archive/$LINUX_SHA.zip -o linux.zip && unzip linux.zip
+          echo "LINUX_DIR=linux-$LINUX_SHA" >> $GITHUB_ENV
+    
+      - name: Install dependencies
+        run: ./install-deps.sh
+      
+      - name: Build the unzipped source code
+        run: ./build-linux.sh $LINUX_DIR tinyconfig
