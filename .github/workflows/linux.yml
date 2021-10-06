@@ -11,6 +11,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - run: wget https://github.com/hwgyun/linux/archive/$(git rev-parse @:./linux).zip
+    - run: wget https://github.com/happygeon/linux/archive/$(git rev-parse @:./linux).zip
     - run: unzip $(git rev-parse @:./linux).zip
     - run: ./build-linux.sh linux-$(git rev-parse @:./linux) tinyconfig
