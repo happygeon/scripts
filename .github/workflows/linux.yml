@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/checkout@v2
-    - run: sudo apt-get install gcc-8
-    - run: wget https://github.com/happygeon/linux/archive/$(git rev-parse @:./linux).zip
-    - run: unzip $(git rev-parse @:./linux).zip
-    - run: ./build-linux.sh linux-$(git rev-parse @:./linux) tinyconfig
+      - uses: actions/checkout@v2
+      - run: sudo apt-get install gcc-8
+      - run: wget https://github.com/happygeon/linux/archive/$(git rev-parse @:./linux).zip
+      - run: unzip $(git rev-parse @:./linux).zip
+      - run: ./build-linux.sh linux-$(git rev-parse @:./linux) tinyconfig
