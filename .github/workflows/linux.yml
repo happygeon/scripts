@@ -1,0 +1,16 @@
+name: linux
+
+on:
+  push:
+    paths:
+      - linux
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: wget https://github.com/hwgyun/linux/archive/$(git rev-parse @:./linux).zip
+    - run: unzip $(git rev-parse @:./linux).zip
+    - run: ./build-linux.sh linux-$(git rev-parse @:./linux) tinyconfig
