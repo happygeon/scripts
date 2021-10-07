@@ -32,6 +32,11 @@ jobs:
           curl -L $GITHUB_SERVER_URL/happygeon/linux/archive/$LINUX_SHA.zip -o linux.zip && unzip linux.zip
           echo "LINUX_DIR=linux-$LINUX_SHA" >> $GITHUB_ENV
     
+      - name: List files
+        run: |
+          cd $LINUX_DIR
+          ls
+      
       - name: Install dependencies
         run: ./install-deps.sh
       
