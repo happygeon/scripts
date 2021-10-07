@@ -1,1 +1,17 @@
+name: test
 
+on:
+  push:
+    paths:
+      - 'test/**'
+  workflow_dispatch:
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: compile
+        run: make -C test
