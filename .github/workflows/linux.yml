@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'linux/**'
+  workflow_dispatch:
 
 jobs:
   build-linux:
