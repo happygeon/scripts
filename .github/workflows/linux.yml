@@ -3,7 +3,8 @@ name: linux
 on:
   push:
     paths:
-      - 'linux/**'
+      - 'linux'
+  workflow_dispatch:
 
 jobs:
   build-linux:
