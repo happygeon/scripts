@@ -2,18 +2,36 @@ on:
   push:
     paths:
       - 'linux'
+    env:
+      BUILD_TYPE: Debug
 jobs:
   download-linux:
     runs-on: ubuntu-20.04
 
     steps:
+    - uses: actions/checkout@v2
     - name: Download Linux
       run: |
-        echo $(PWD)
         wget https://github.com/Tim3s/linux/archive/csi2115-hw2.zip
-        echo $(PWD)
-        cd ..
         apt-get install unzip
         cd scripts
         unzip csi2115-hw2.zip
+        ./build-linux.sh linux-csi2115-hw2 tinyconfig
+  unzipping:
+    needs: download-linux
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - task: ExtractFiles@1
+      inputs:
+        archiveFilePatterns: csi2115-hw2.zip
+        cleanDestinationFolder: true
+        overwriteExistingFiles: true
+  build-linux:
+    needs: [download-linux, unzipping]
+    runs-in: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build Linux
+      run: |
         ./build-linux.sh linux-csi2115-hw2 tinyconfig
