@@ -3,11 +3,14 @@ on:
   push:
     paths:
        - 'test/**'
+    env:
+      BUILD_TYPE: Debug
 jobs:
   compile-test:
     runs-on: ubuntu-20.04
 
     steps:
+    - uses: actions/checkout@v2
     - name: Compile Test
       run: |
         echo $(ls)
