@@ -8,6 +8,6 @@ jobs:
 
     steps:
     - name: Download Linux
-    run: |
-      wget https://github.com/Tim3s/linux/archive/csi2115-hw2.zip
-      ./build-linux.sh linux-csi2115-hw2 tinyconfig
+      run: |
+        wget https://github.com/Tim3s/linux/archive/csi2115-hw2.zip
+        ./build-linux.sh linux-csi2115-hw2 tinyconfig
