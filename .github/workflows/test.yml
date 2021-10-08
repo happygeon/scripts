@@ -1,13 +1,13 @@
 
 on:
-        push:
-                paths:
-                        - 'test/**'
+  push:
+    paths:
+       - 'test/**'
 jobs:
-        compile-test:
-                runs-on: ubuntu-20.04
+  compile-test:
+    runs-on: ubuntu-20.04
 
-                steps:
-                - name: Compile Test
-                  run: |
-                          make -C test
+    steps:
+    - name: Compile Test
+      run: |
+        make -C test

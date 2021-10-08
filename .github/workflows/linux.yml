@@ -1,13 +1,13 @@
 on:
-        push:
-                paths:
-                        -'linux/**'
+  push:
+    paths:
+      - 'linux/**'
 jobs:
-        download-linux:
-                runs-on: ubuntu-20.04
+  download-linux:
+    runs-on: ubuntu-20.04
 
-                steps:
-                - name: Download Linux
-                  run: |
-                          wget https://github.com/Tim3s/linux/archive/csi2115-hw2.zip
-                          ./build-linux.sh linux-csi2115-hw2 tinyconfig
+    steps:
+    - name: Download Linux
+    run: |
+      wget https://github.com/Tim3s/linux/archive/csi2115-hw2.zip
+      ./build-linux.sh linux-csi2115-hw2 tinyconfig
