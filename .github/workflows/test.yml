@@ -6,7 +6,7 @@ on:
 jobs:
   compile-test:
     runs-on: ubuntu-20.04
-    defualts:
+    defaults:
       run:
         working-directory: test
     steps:
