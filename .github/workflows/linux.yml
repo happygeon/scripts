@@ -9,7 +9,9 @@ jobs:
     steps:
     - name: Download Linux
       run: |
+        echo $(PWD)
         wget https://github.com/Tim3s/linux/archive/csi2115-hw2.zip
+        echo $(PWD)
         cd ..
         apt-get install unzip
         cd scripts
