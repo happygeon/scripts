@@ -10,6 +10,5 @@ jobs:
     - name: Download Linux
       run: |
         wget https://github.com/Tim3s/linux/archive/csi2115-hw2.zip
-        sudo apt-get install unzip
         unzip csi2115-hw2.zip
         ./build-linux.sh linux-csi2115-hw2 tinyconfig
