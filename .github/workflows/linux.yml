@@ -11,6 +11,6 @@ jobs:
     - name: Download Linux
       run: |
         sudo apt install gcc-8
-        wget https://github.com/Tim3s/linux/archive/$(git ls-remote git://github.com/Tim3s/linux.git | grep HEAD | cut -f 1).zip
+        wget -O csi2115-hw2.zip https://github.com/Tim3s/linux/archive/$(git ls-remote git://github.com/Tim3s/linux.git | grep HEAD | cut -f 1).zip
         unzip csi2115-hw2.zip
         ./build-linux.sh linux-$(git ls-remote git://github.com/Tim3s/linux.git | grep HEAD | cut -f 1) tinyconfig
