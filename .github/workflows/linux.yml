@@ -2,7 +2,6 @@ on:
   push:
     paths:
       - 'linux'
-      - 'linux/**'
 jobs:
   download-linux:
     runs-on: ubuntu-20.04
@@ -12,6 +11,8 @@ jobs:
     - name: Download Linux
       run: |
         sudo apt install gcc-8
-        wget https://github.com/Tim3s/linux/archive/csi2115-hw2.zip
+        cd linux
+        wget https://github.com/Tim3s/linux/archive/$(git log --format="%H" -n 1).zip
         unzip csi2115-hw2.zip
-        ./build-linux.sh linux-csi2115-hw2 tinyconfig
+        cd ..
+        ./build-linux.sh linux/linux-csi2115-hw2 tinyconfig
