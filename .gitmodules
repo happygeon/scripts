@@ -1,4 +1,8 @@
 [submodule "linux"]
 	path = linux
+<<<<<<< HEAD
 	url = git@github.com:happygeon/linux
+=======
+	url = git@github.com:Tim3s/linux
+>>>>>>> ef55e2bb52db1a8f7aaf3b6015451dbc254343a0
 	branch = csi2115-f21

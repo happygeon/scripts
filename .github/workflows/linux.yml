@@ -1,9 +1,13 @@
+<<<<<<< HEAD
 name: linux
 
+=======
+>>>>>>> ef55e2bb52db1a8f7aaf3b6015451dbc254343a0
 on:
   push:
     paths:
       - 'linux'
+<<<<<<< HEAD
   workflow_dispatch:
 
 jobs:
@@ -31,3 +35,17 @@ jobs:
       
       - name: Build the unzipped source code
         run: ./build-linux.sh $LINUX_DIR tinyconfig
+=======
+jobs:
+  download-linux:
+    runs-on: ubuntu-20.04
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Download Linux
+      run: |
+        sudo apt install gcc-8
+        wget -O csi2115-hw2.zip https://github.com/Tim3s/linux/archive/$(git ls-remote git://github.com/Tim3s/linux.git | grep HEAD | cut -f 1).zip
+        unzip csi2115-hw2.zip
+        ./build-linux.sh linux-$(git ls-remote git://github.com/Tim3s/linux.git | grep HEAD | cut -f 1) tinyconfig
+>>>>>>> ef55e2bb52db1a8f7aaf3b6015451dbc254343a0
