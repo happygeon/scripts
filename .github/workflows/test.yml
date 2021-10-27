@@ -1,12 +1,8 @@
-<<<<<<< HEAD
 name: test
-=======
->>>>>>> ef55e2bb52db1a8f7aaf3b6015451dbc254343a0
 
 on:
   push:
     paths:
-<<<<<<< HEAD
       - 'test/**'
   workflow_dispatch:
 
@@ -19,15 +15,4 @@ jobs:
       
       - name: compile
         run: make -C test
-=======
-       - 'test/**'
-jobs:
-  compile-test:
-    runs-on: ubuntu-20.04
 
-    steps:
-    - uses: actions/checkout@v2
-    - name: Compile Test
-      run: |
-        make -C test
->>>>>>> ef55e2bb52db1a8f7aaf3b6015451dbc254343a0
